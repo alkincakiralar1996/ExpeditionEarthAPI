@@ -1,6 +1,6 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
 
 const typeDefs = `#graphql
   type Planet {
@@ -114,8 +114,8 @@ const server = new ApolloServer({
     resolvers,
     introspection: true,
     plugins: [
-        ApolloServerPluginLandingPageLocalDefault({ footer: false })
-      ],
+        ApolloServerPluginLandingPageGraphQLPlayground()
+    ]
 });
 
 const port = Number.parseInt(process.env.PORT) || 4000;
