@@ -1,5 +1,11 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import express from 'express';
+import { expressMiddleware } from '@apollo/server/express4';
+import http from 'http';
+import cors from 'cors';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { json } from 'body-parser';
 
 const typeDefs = `#graphql
   type Planet {
@@ -111,11 +117,8 @@ const resolvers = {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: true
 });
 
 const port = Number.parseInt(process.env.PORT) || 4000;
 
 const { url } = await startStandaloneServer(server, { listen: { port } });
-
-console.log(`🚀  Server ready at: ${url}`);
