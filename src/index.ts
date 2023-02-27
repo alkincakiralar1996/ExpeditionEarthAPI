@@ -1,11 +1,5 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import express from 'express';
-import { expressMiddleware } from '@apollo/server/express4';
-import http from 'http';
-import cors from 'cors';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { json } from 'body-parser';
 
 const typeDefs = `#graphql
   type Planet {
