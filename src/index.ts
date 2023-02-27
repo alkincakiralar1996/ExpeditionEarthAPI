@@ -111,6 +111,7 @@ const resolvers = {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true
 });
 
 const port = Number.parseInt(process.env.PORT) || 4000;
