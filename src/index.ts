@@ -83,7 +83,7 @@ const planets = [
         image: 'https://i.ibb.co/vm98725/pluto.png',
     },
     {
-        id: 'HYQ0148',
+        id: 'HYQ0158',
         name: 'Sun',
         oxygen: 0,
         distance: 150,
