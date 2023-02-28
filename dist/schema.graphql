@@ -1,0 +1,17 @@
+type Planet {
+    id: String
+    name: String
+    oxygen: Float
+    distance: Int
+    lightYears: Float
+    mAh: Float
+    image: String
+  }
+
+  type Query {
+    planets: [Planet]
+  }
+
+  type Mutation {
+    deletePlanet(id: String!): Boolean!
+  }

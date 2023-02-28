@@ -1,6 +1,9 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground';
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 const typeDefs = `#graphql
   type Planet {
@@ -15,6 +18,10 @@ const typeDefs = `#graphql
 
   type Query {
     planets: [Planet]
+  }
+
+  type Mutation {
+    deletePlanet(id: String!): Boolean!
   }
 `;
 
@@ -107,10 +114,22 @@ const resolvers = {
     Query: {
         planets: () => planets,
     },
+    Mutation: {
+        deletePlanet: (id) => {
+            return true
+        }
+    },
 };
 
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
 const server = new ApolloServer({
-    typeDefs,
+    typeDefs: fs.readFileSync(
+        path.join(__dirname, 'schema.graphql'),
+        'utf8'
+      ),
     resolvers,
     introspection: true,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
