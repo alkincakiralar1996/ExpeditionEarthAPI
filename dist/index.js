@@ -112,10 +112,10 @@ const resolvers = {
         planets: () => planets,
     },
     Mutation: {
-        deletePlanet: (id) => {
-            return true;
+        deletePlanet: (parent, args) => {
+            return planets.find(x => x.id == args.id) != null;
         }
-    },
+    }
 };
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

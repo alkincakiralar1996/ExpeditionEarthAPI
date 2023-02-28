@@ -4,6 +4,7 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-p
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { print } from 'graphql';
 
 const typeDefs = `#graphql
   type Planet {
@@ -115,10 +116,10 @@ const resolvers = {
         planets: () => planets,
     },
     Mutation: {
-        deletePlanet: (id) => {
-            return true
+        deletePlanet: (parent, args) => {
+            return planets.find(x => x.id == args.id) != null
         }
-    },
+    }
 };
 
 const __filename = fileURLToPath(import.meta.url);
